@@ -1,0 +1,199 @@
+{
+  "size": 17,
+  "seed": 1,
+  "budget": {
+    "num_envs": 256,
+    "iterations": [
+      2000,
+      2000,
+      1500
+    ],
+    "eval_episodes": 128,
+    "log_every": 50
+  },
+  "networks": {
+    "FC128": "KartalCNNActorCriticNetwork"
+  },
+  "hpo": {
+    "FC128": {
+      "score": 6.5390625,
+      "trial": 31,
+      "learning_rate_collect": 0.0001621121939310169,
+      "learning_rate_crates": 0.0024532731455089245,
+      "learning_rate_versus": 0.0003642368405707834,
+      "entropy_coef": 0.008687010014989484
+    }
+  },
+  "entropy_final": 0.0005,
+  "crate_reward": 0.6,
+  "stages": [
+    {
+      "name": "collect",
+      "iterations": 2000,
+      "forbid_bomb": true,
+      "entropy": [
+        0.008687010014989484,
+        0.0005
+      ],
+      "learning_rate": 0.0001621121939310169,
+      "scenario": {
+        "crate_density": 0.0,
+        "coin_count": 8,
+        "size": 17,
+        "agent_count": 1
+      },
+      "rules": {
+        "max_steps": 200,
+        "bomb_power": 3,
+        "bomb_timer": 4,
+        "explosion_timer": 2,
+        "reward_coin": 1.0,
+        "reward_kill": 5.0
+      },
+      "reward": [
+        {
+          "CoinPickupReward": {
+            "coin": 1.0
+          }
+        },
+        {
+          "StepPenalty": {
+            "step": 0.02
+          }
+        }
+      ],
+      "opponents": []
+    },
+    {
+      "name": "crates",
+      "iterations": 2000,
+      "forbid_bomb": false,
+      "entropy": [
+        0.008687010014989484,
+        0.0005
+      ],
+      "learning_rate": 0.0024532731455089245,
+      "scenario": {
+        "crate_density": 0.18,
+        "coin_count": 9,
+        "size": 17,
+        "agent_count": 1
+      },
+      "rules": {
+        "max_steps": 200,
+        "bomb_power": 3,
+        "bomb_timer": 4,
+        "explosion_timer": 2,
+        "reward_coin": 1.0,
+        "reward_kill": 5.0
+      },
+      "reward": [
+        {
+          "CoinPickupReward": {
+            "coin": 1.0
+          }
+        },
+        {
+          "UrgentCrateReward": {
+            "crate": 0.6,
+            "urgent_crate_scale": 0.25
+          }
+        },
+        {
+          "DeathPenalty": {
+            "death": 2.0
+          }
+        },
+        {
+          "UrgentStepPenalty": {
+            "step": 0.01,
+            "urgent_step": 0.05
+          }
+        }
+      ],
+      "opponents": []
+    },
+    {
+      "name": "versus",
+      "iterations": 1500,
+      "forbid_bomb": false,
+      "entropy": [
+        0.008687010014989484,
+        0.0005
+      ],
+      "learning_rate": 0.0003642368405707834,
+      "scenario": {
+        "crate_density": 0.18,
+        "coin_count": 6,
+        "size": 17,
+        "agent_count": 2
+      },
+      "rules": {
+        "max_steps": 200,
+        "bomb_power": 3,
+        "bomb_timer": 4,
+        "explosion_timer": 2,
+        "reward_coin": 1.0,
+        "reward_kill": 5.0
+      },
+      "reward": [
+        {
+          "CoinPickupReward": {
+            "coin": 1.0
+          }
+        },
+        {
+          "KillReward": {
+            "kill": 2.5
+          }
+        },
+        {
+          "DeathPenalty": {
+            "death": 3.0
+          }
+        },
+        {
+          "StepPenalty": {
+            "step": 0.02
+          }
+        },
+        {
+          "UrgentCrateReward": {
+            "crate": 0.3,
+            "urgent_crate_scale": 1.0
+          }
+        },
+        {
+          "PBRSReward": {
+            "enabled": true,
+            "scale": 1.0,
+            "gamma": 0.99,
+            "danger_weight": 1.0,
+            "coin_weight": 1.0
+          }
+        }
+      ],
+      "opponents": [
+        "RuleBasedAgent"
+      ]
+    }
+  ],
+  "eval": {
+    "scenario": {
+      "crate_density": 0.35,
+      "coin_count": 9,
+      "size": 17,
+      "agent_count": 2
+    },
+    "rules": {
+      "max_steps": 200,
+      "bomb_power": 3,
+      "bomb_timer": 4,
+      "explosion_timer": 2,
+      "reward_coin": 1.0,
+      "reward_kill": 5.0
+    },
+    "episodes": 128,
+    "opponent": "RuleBasedAgent"
+  }
+}

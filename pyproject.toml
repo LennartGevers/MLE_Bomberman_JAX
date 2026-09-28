@@ -1,0 +1,40 @@
+[project]
+name = "bomberman"
+version = "1.0.0"
+description = "Pure-JAX Bomberman engine with A2C and MCTS agents"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "diffrax>=0.7.2",
+    "equinox>=0.13.8",
+    "jax>=0.11.1",
+    "jaxtyping>=0.2",
+    "mctx>=0.0.71",
+    "numpy>=2.0",
+    "optax>=0.2.8",
+    "orbax-checkpoint>=0.12.4",
+    "pipefunc>=0.93.1",
+    "svgwrite>=1.4",
+    "tqdm>=4.70.1",
+]
+
+[project.optional-dependencies]
+# for the notebooks in experiments/ and showcase.ipynb
+notebooks = [
+    "ipykernel>=7.3.0",
+    "jinja2>=3.1.6",
+    "matplotlib>=3.11.1",
+    "optuna>=5.0.0",
+    "pandas>=2.2",
+    "seaborn>=0.13.2",
+]
+
+[tool.uv]
+package = true
+
+[build-system]
+requires = ["uv_build>=0.8.0,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = ""

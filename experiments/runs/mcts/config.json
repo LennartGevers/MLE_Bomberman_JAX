@@ -1,0 +1,25 @@
+{
+  "size": 17,
+  "weights": "a2c_17x17_Kartal/FC128/versus.eqx",
+  "network": "FC128",
+  "budgets": [
+    0,
+    2,
+    4,
+    8,
+    16,
+    32
+  ],
+  "episodes": 128,
+  "determinizations": 1,
+  "discount": 0.99,
+  "opponent_temperature": 1.0,
+  "backend": "gpu",
+  "eval": {
+    "crate_density": 0.35,
+    "coins": 9,
+    "max_steps": 200,
+    "agents": 2
+  },
+  "tree_reward": "versus-stage reward of T03"
+}

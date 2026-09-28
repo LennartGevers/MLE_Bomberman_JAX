@@ -1,0 +1,36 @@
+{
+  "size": 9,
+  "network": "KartalCNNActorCriticNetwork",
+  "budget": {
+    "trials": 64,
+    "num_envs": 150,
+    "iterations": [
+      1000,
+      2000,
+      1000
+    ],
+    "eval_episodes": 128,
+    "gate_episodes": 64
+  },
+  "sampler": "TPESampler(seed=0)",
+  "entropy_final": 0.0005,
+  "bounds": {
+    "learning_rate": [
+      0.0001,
+      0.003
+    ],
+    "entropy_coef": [
+      0.005,
+      0.1
+    ]
+  },
+  "quality_gate": {
+    "collect": 0.5,
+    "crates": 0.5
+  },
+  "stages": [
+    "collect",
+    "crates",
+    "versus"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "score": 6.5390625,
+  "trial": 31,
+  "learning_rate_collect": 0.0001621121939310169,
+  "learning_rate_crates": 0.0024532731455089245,
+  "learning_rate_versus": 0.0003642368405707834,
+  "entropy_coef": 0.008687010014989484
+}
