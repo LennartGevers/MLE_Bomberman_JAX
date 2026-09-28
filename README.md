@@ -1,5 +1,7 @@
 # Jax-Bomberman
 
+**Authors:** Joshua Marwin Müller and Lennart Gevers, Heidelberg University
+
 This repository contains the code for our report: a Bomberman engine written in JAX, the agents we
 trained with it, and the notebooks for the experiments in chapter 6. The engine plays by the same rules as
 the original `bomberman_rl` game from the course. Because the whole game is stored in arrays of fixed size
